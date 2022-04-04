@@ -1,16 +1,12 @@
-const REGEX = /^_[0-9a-z]{8}$/;
-
-var all_divs = document.getElementsByTagName('div');
-var divs = [];
-
-for (var i = 0; i < all_divs.length; i++) {
-    var div = all_divs[i];
-
-    if (div.className.match(REGEX)) {
-        divs.push(div);
+// unblur answers
+document.querySelectorAll('div').forEach((div) => {
+    if (div.className.match(/^_[0-9a-z]{8}$/)) {
+        div.removeAttribute("class");
     }
-}
+});
 
-for (var i = 0; i < divs.length; i++) {
-    divs[i].removeAttribute("class");
-}
+// remove answer preview
+document.getElementsByClassName("c-answer__body")[0].getElementsByTagName("p")[0].remove();
+
+// remove paywall message
+document.getElementById("enotes-paywall").parentNode.remove();
